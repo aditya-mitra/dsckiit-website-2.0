@@ -7,10 +7,13 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "post-install": "node env-Decrypter.js"
   },
   "devDependencies": {},
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "find-config": "^1.0.0",
     "knex": "<0.20.0",
     "pg": "^8.5.1",
     "pg-connection-string": "^2.4.0",
@@ -26,7 +29,7 @@
     "strapi-utils": "3.4.1"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "aditya-mitra"
   },
   "strapi": {
     "uuid": "417122e4-7fac-4269-8eef-024b017dc879"
