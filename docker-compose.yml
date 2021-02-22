@@ -4,39 +4,40 @@ services:
     db:
         container_name: pgdb
         image: postgres:12-alpine
-        restart: always
+        restart: on-failure
         environment:
-            POSTGRES_DB: cmspgdb
-            POSTGRES_USER: postgresuser
-            POSTGRES_PASSWORD: postgrespass
+            POSTGRES_DB: dsc_strapi_db
+            POSTGRES_USER: dsc_strapi_user
+            POSTGRES_PASSWORD: dsc_strapi_webdev
+        volumes:
+            - ./pgdocker:/var/lib/postgresql/data
         ports:
             - 5432:5432
-        networks:
-            - backend-network
+        network_mode: host
 
     cms:
         container_name: cmsbackend
         build: ./cms
-        depends_on:
-            - db
+        environment:
+            DATABASE_NAME: dsc_strapi_db
+            DATABASE_HOST: localhost
+            DATABASE_USERNAME: dsc_strapi_user
+            DATABASE_PASSWORD: dsc_strapi_webdev
+            DATABASE_PORT: 5432
         ports:
             - 9000:9000
-        restart: always
-        healthcheck:
-            test: ['CMD-SHELL', 'pg_isready -U postgresuser']
-            interval: 10s
-            timeout: 5s
-            retries: 5
-        networks:
-            - backend-network
+        network_mode: host
+        restart: on-failure
+        depends_on:
+            - db
 
     webhook:
         container_name: strapi_webhook
         build: ./webhooks/strapi
         environment:
-            - DISCORD_URL=CORRECT DISCORD URL
+            DISCORD_URL: CORRECT DISCORD URL
         ports:
             - 9001:9001
-
-networks:
-    backend-network: {}
+        network_mode: host
+        volumes:
+            - ./cmsdocker:/srv/app

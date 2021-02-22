@@ -5,7 +5,7 @@ Database - PostgreSQL
 
 ## Skip Env Variables
 
-Set **`SKIP_DEC`** to `TRUE`.
+Set **`SKIP_DECR`** to `TRUE`.
 
 # Production
 
@@ -31,3 +31,11 @@ All with FIND and FINDONE enabled
 
 Set _Enable responsive friendly upload_ in **Media Library** to _Off_.
 (This is to disable uploading the same in `large`, `medium` and `small` formats)
+
+## Problems
+
+### During `docker` run
+
+-   The `environment` variables from _service: cms_ is not passing into the container during `npm run build` stage of `docker-compose build`.
+    Currently using subsitute variables.
+    However, these variables are passed when the container **has started running**.

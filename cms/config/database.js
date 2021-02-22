@@ -3,8 +3,6 @@ const productionConfig = ({ env }) => {
 
 	const dbConfig = dbUriParse(process.env.DB_URL_PG);
 
-	console.log(require('util').inspect(dbConfig, false, null, true));
-
 	return {
 		defaultConnection: 'default',
 		connections: {
@@ -12,17 +10,15 @@ const productionConfig = ({ env }) => {
 				connector: 'bookshelf',
 				settings: {
 					client: 'postgres',
-					database: dbConfig.database,
-					host: dbConfig.host,
-					port: dbConfig.port,
-					username: dbConfig.user,
-					password: dbConfig.password,
-					ssl: {
-						rejectUnauthorized: false,
-					},
+					host: env('DATABASE_HOST', 'localhost'),
+					database: env('DATABASE_NAME', 'dsc_strapi_db'),
+					port: env.int('DATABASE_PORT', 5432),
+					username: env('DATABASE_USERNAME', 'dsc_strapi_user'),
+					password: env('DATABASE_PASSWORD', 'dsc_strapi_webdev'),
+					ssl: false,
 				},
 				options: {
-					ssl: true,
+					autoMigration: true, // this option is required in dbs other than sqlite so that tables can be created autuomatically
 				},
 			},
 		},
