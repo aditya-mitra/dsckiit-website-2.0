@@ -4,7 +4,7 @@ services:
     db:
         container_name: pgdb
         image: postgres:12-alpine
-        restart: on-failure
+        restart: always
         environment:
             POSTGRES_DB: dsc_strapi_db
             POSTGRES_USER: dsc_strapi_user
@@ -35,7 +35,7 @@ services:
         container_name: strapi_webhook
         build: ./webhooks/strapi
         environment:
-            DISCORD_URL: CORRECT DISCORD URL
+            DISCORD_URL: https://discord.com/api/webhooks/812343982280540190/-skfe0sh15IjTu5RyLW9CKPr5DVdtTC46LVIeW3bpHWBXMr5qO5K8MlSiclqY5OCbL8x
         ports:
             - 9001:9001
         network_mode: host
