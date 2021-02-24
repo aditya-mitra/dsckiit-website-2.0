@@ -14,8 +14,6 @@ ENV NODE_ENV=production
 
 RUN npm run postinstall
 
-RUN npm run build
-
 RUN npm prune --production
 
 EXPOSE 9000

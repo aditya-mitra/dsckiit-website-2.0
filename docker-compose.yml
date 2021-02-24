@@ -1,43 +1,42 @@
 version: '3'
 
 services:
-    db:
-        container_name: pgdb
-        image: postgres:12-alpine
-        restart: always
-        environment:
-            POSTGRES_DB: dsc_strapi_db
-            POSTGRES_USER: dsc_strapi_user
-            POSTGRES_PASSWORD: dsc_strapi_webdev
-        volumes:
-            - ./pgdocker:/var/lib/postgresql/data
-        ports:
-            - 5432:5432
-        network_mode: host
+    # db:
+    #     container_name: pgdb
+    #     image: postgres:12-alpine
+    #     restart: always
+    #     environment:
+    #         POSTGRES_DB: dsc_strapi_db
+    #         POSTGRES_USER: dsc_strapi_user
+    #         POSTGRES_PASSWORD: dsc_strapi_webdev
+    #     volumes:
+    #         - ./pgdocker:/var/lib/postgresql/data
+    #     ports:
+    #         - 5432:5432
+    #     network_mode: host
 
     cms:
         container_name: cmsbackend
         build: ./cms
-        environment:
-            DATABASE_NAME: dsc_strapi_db
-            DATABASE_HOST: localhost
-            DATABASE_USERNAME: dsc_strapi_user
-            DATABASE_PASSWORD: dsc_strapi_webdev
-            DATABASE_PORT: 5432
+        # environment:
+        #     DATABASE_NAME: dsc_strapi_db
+        #     DATABASE_HOST: localhost
+        #     DATABASE_USERNAME: dsc_strapi_user
+        #     DATABASE_PASSWORD: dsc_strapi_webdev
+        #     DATABASE_PORT: 5432
         ports:
             - 9000:9000
         network_mode: host
         restart: on-failure
-        depends_on:
-            - db
-
-    webhook:
-        container_name: strapi_webhook
-        build: ./webhooks/strapi
-        environment:
-            DISCORD_URL: https://discord.com/api/webhooks/812343982280540190/-skfe0sh15IjTu5RyLW9CKPr5DVdtTC46LVIeW3bpHWBXMr5qO5K8MlSiclqY5OCbL8x
-        ports:
-            - 9001:9001
-        network_mode: host
         volumes:
             - ./cmsdocker:/srv/app
+        # depends_on:
+        #     - db
+    # webhook:
+    #     container_name: strapi_webhook
+    #     build: ./webhooks/strapi
+    #     environment:
+    #         DISCORD_URL: https://discord.com/api/webhooks/812343982280540190/-skfe0sh15IjTu5RyLW9CKPr5DVdtTC46LVIeW3bpHWBXMr5qO5K8MlSiclqY5OCbL8x
+    #     ports:
+    #         - 9001:9001
+    #     network_mode: host
