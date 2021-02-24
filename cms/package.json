@@ -6,9 +6,9 @@
 	"scripts": {
 		"devf": "cross-env FAST=TRUE strapi develop",
 		"start": "strapi start",
-		"build": "strapi build --clean",
 		"strapi": "strapi",
 		"postinstall": "node env-Decrypter.js",
+		"build": "npm run postinstall",
 		"ci:build": "cross-env FAST=TRUE strapi build",
 		"server:testing": "cross-env TESTING=TRUE npm start",
 		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"

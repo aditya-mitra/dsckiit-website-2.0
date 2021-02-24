@@ -4,13 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-# secret for decrypting env variables
-ENV PROD_DECR=dscwebdev
-
-# npm ci will be unable to decrypt the env variables (looks like postinstall script is not)
 RUN npm install
 
-# setting NODE_ENV as PRODUCTION here because we don't want to skip the dev dependencies for build
 ENV NODE_ENV=production
 
 RUN npm run build
