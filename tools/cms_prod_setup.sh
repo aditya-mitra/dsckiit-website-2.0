@@ -19,6 +19,7 @@ export SKIP_DECR=FALSE
 printf "\n\n=================================================================\n\n"
 echo "Make sure you have set the PROD_DECR TO THE CORRECT SECRET"
 
+export PORT=80 # to access it from another domain
 # ---EDIT THIS VARIABLE---
 export PROD_DECR=proddscwebdev
 
