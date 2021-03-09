@@ -20,7 +20,7 @@ printf "\n\n=================================================================\n\
 echo "Make sure you have set the PROD_DECR TO THE CORRECT SECRET"
 
 # ---EDIT THIS VARIABLE---
-export PROD_DECR=#correct env secret
+export PROD_DECR=proddscwebdev
 
 echo "PROD_DECR is $PROD_DECR"
 printf "\n\n=================================================================\n\n"
