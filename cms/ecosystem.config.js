@@ -8,7 +8,6 @@ module.exports = {
 			restart_delay: 3000,
 			listen_timeout: 4500,
 			error_file: './LOGS/err.log',
-			out_file: './LOGS/out.log',
 			log_file: './LOGS/combined.log',
 			max_memory_restart: '990M',
 			source_map_support: true,
